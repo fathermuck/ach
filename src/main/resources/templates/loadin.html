@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.js}"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>已改1</title>
+</head>
+<body>
+    用户名：<input id="account" type="text" name="account"><br>
+    密码：<input id="password" type="password" name="password">
+    <input id="loadin" type="submit" value="登录1">
+
+</body>
+<script  type="text/javascript">
+
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+
+    $("#loadin").click(
+        function(){
+            var account = $("#account").val();
+            var password = $("#password").val();
+            var jsonObj = {"account":account,"password":password};
+            $.ajax({
+                url: BASE_PATH + "/user/loginb",
+                type: "post",
+                data:JSON.stringify(jsonObj),
+                contentType:"application/json",
+                success:function(data) {
+                    console.log(data);
+                    if (data == 'success') {//根据返回值进行跳转
+                        console.log(data);
+                        window.location.href = BASE_PATH + '/user/usermessage';
+                    }if(data=='exist'){
+                        console.log("已存在");
+                    }
+                }
+            }) ;
+        }
+    );
+
+
+</script>
+</html>

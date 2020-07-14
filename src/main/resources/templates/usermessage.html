@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.js}"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a>1</a><br>
+<tr th:each="user : ${session.currentUser}">
+    <td th:text="${user.getUserId()}"></td>
+    <td th:text="${user.getUserAccount()}"></td>
+    <td th:text="${user.getUserPassword()}"></td>
+    <td th:text="${user.getUserName()}"></td>
+    <td th:text="${user.getUserLevel()}"></td>
+</tr>
+<input id="upload" type="submit" value="传文件">
+
+</body>
+<script  type="text/javascript">
+
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+
+    $("#upload").click(function(){
+            window.location.href = BASE_PATH + '/file/upload';
+    });
+
+</script>
+</html>

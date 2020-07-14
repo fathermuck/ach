@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.js}"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+</head>
+<body>
+<a href="https://blog.csdn.net/gnail_oug/article/details/80324120">教程</a>
+<br>
+<span th:text="${session.currentUser.getUserName()}">，你好</span>
+
+<form id="uploadFile" method="post"  enctype="multipart/form-data">
+    <input type="file" name="file"><br>
+</form>
+<button id="upload">提交</button>
+
+</body>
+<script  type="text/javascript">
+
+    var obj = window.document.location;
+    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
+
+    $("#upload").click(
+        function(){
+            alert("上传文件");
+            var form = new FormData($("#uploadFile").get(0));
+            $.ajax({
+                url: BASE_PATH + "/file/uploadFile",
+                type: "post",
+                data:form,
+                processData:false,
+                contentType:false,
+                success:function(data) {
+                    console.log(data);
+                    if (data == 'success') {//根据返回值进行跳转
+                        alert("上传成功");
+                    }if(data=='false'){
+                        alert("上传失败");
+                    }
+                }
+            }) ;
+        }
+    );
+
+
+</script>
+</html>

@@ -16,7 +16,7 @@
     <td th:text="${user.getUserLevel()}"></td>
 </tr>
 <input id="upload" type="submit" value="传文件">
-
+<input id="ws" type="submit" value="ws">
 </body>
 <script  type="text/javascript">
 
@@ -25,6 +25,10 @@
 
     $("#upload").click(function(){
             window.location.href = BASE_PATH + '/file/upload';
+    });
+
+    $("#ws").click(function(){
+        window.location.href = BASE_PATH + '/ws';
     });
 
 </script>

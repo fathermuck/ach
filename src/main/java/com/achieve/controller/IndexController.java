@@ -20,5 +20,10 @@ public class IndexController {
         return "loadin";
     }
 
+    @RequestMapping("/ws")
+    public String toWs(Model model){
+        return "webSocketTest";
+    }
+
 
 }

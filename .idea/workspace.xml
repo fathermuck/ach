@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6af3bd81-d6b0-4a21-9395-24ace1619675" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_websocket_2_2_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_messaging_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_websocket_5_2_4_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/achieve/utils/MyWebSocket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/achieve/utils/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/webSocketTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/achievement.iml" beforeDir="false" afterPath="$PROJECT_DIR$/achievement.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/achieve/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/achieve/controller/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/usermessage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/usermessage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/achieve/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/achieve/controller/IndexController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/usermessage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/usermessage.html" afterDir="false" />
-    </list>
+    <list default="true" id="6af3bd81-d6b0-4a21-9395-24ace1619675" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/achieve/utils/WebConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+              <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
               <folding>
                 <element signature="e#1201#1202#0" expanded="true" />
               </folding>
@@ -330,7 +315,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="http.proxy" />
@@ -420,6 +405,14 @@
       <workItem from="1594717416044" duration="1202000" />
       <workItem from="1594780773722" duration="10510000" />
     </task>
+    <task id="LOCAL-00001" summary="websocket">
+      <created>1594807775446</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1594807775446</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -455,7 +448,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39961000" />
+    <option name="totallyTimeSpent" value="40084000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -467,7 +460,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26675603" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -485,13 +479,13 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32956153" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932975" weight="0.32719547" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49865952" weight="0.32719547" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013405" side_tool="true" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5020107" side_tool="true" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32956153" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32956153" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49865952" visible="true" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49798927" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="MyBatis Log" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -543,6 +537,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="websocket" />
+    <option name="LAST_COMMIT_MESSAGE" value="websocket" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
@@ -745,16 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/achieve/utils/WebConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding>
-            <element signature="e#1201#1202#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Java/jdk1.8.0_211/src.zip!/java/util/concurrent/CopyOnWriteArraySet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -819,6 +807,29 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#309#322#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/com/achieve/controller/IndexController.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#742#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/templates/usermessage.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/achieve/utils/WebConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" column="38" lean-forward="true" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+          <folding>
+            <element signature="e#1201#1202#0" expanded="true" />
           </folding>
         </state>
       </provider>

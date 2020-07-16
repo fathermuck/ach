@@ -1,9 +1,16 @@
-package com.achieve.utils;
+package com.achieve.websocket;
 
+import com.achieve.domain.SocketMsg;
+import com.achieve.domain.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -15,7 +22,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 虽然@Component默认是单例模式的，但springboot还是会为每个websocket连接初始化一个bean，
 所以可以用一个静态set保存起来。
  */
-@ServerEndpoint(value = "/websocket")
+@ServerEndpoint(value = "/websocket",configurator= GetHttpSessionConfigurator.class)
 @Component
 public class MyWebSocket {
 
@@ -23,15 +30,25 @@ public class MyWebSocket {
     private static CopyOnWriteArraySet<MyWebSocket> webSocketSet = new CopyOnWriteArraySet<MyWebSocket>();
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private  Session session;
+
+    private User user;
+    //用来记录sessionId和该session进行绑定
+    private static Map<String,Session> map = new HashMap<String, Session>();
     /**
      * 连接建立成功调用的方法
      */
     @OnOpen
-    public void onOpen(Session session) {
+    public void onOpen(Session session, EndpointConfig config) {
         this.session = session;
+        HttpSession httpSession= (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
+        System.out.println(httpSession.toString());
+   //     this.user = (User) httpSession.getAttribute("currentUser");
+        String userName = "路人甲";
+      //  userName = user.getUserName();
+        map.put(session.getId(),session); //加入map中
         webSocketSet.add(this);     //加入set中
         System.out.println("有新连接加入！当前在线人数为" + webSocketSet.size());
-        this.session.getAsyncRemote().sendText("恭喜您成功连接上WebSocket-->当前在线人数为："+webSocketSet.size());
+        this.session.getAsyncRemote().sendText("恭喜"+userName+"成功连接上WebSocket(其频道号为："+session.getId()+"-->当前在线人数为："+webSocketSet.size());
     }
     /**
      * 连接关闭调用的方法
@@ -48,8 +65,29 @@ public class MyWebSocket {
     @OnMessage
     public void onMessage(String message, Session session) {
         System.out.println("来自客户端的消息:" + message);
-        //群发消息
-        broadcast(message);
+        ObjectMapper objectMapper = new ObjectMapper();
+        SocketMsg socketMsg;
+
+        try {
+            socketMsg = objectMapper.readValue(message,SocketMsg.class);
+            if(socketMsg.getType() == 1){
+                socketMsg.setFromUser(session.getId());
+                Session fromSession = map.get(socketMsg.getFromUser());
+                Session toSession = map.get(socketMsg.getToUser());
+
+                if(toSession != null){
+                    fromSession.getAsyncRemote().sendText(socketMsg.getMsg());
+                    toSession.getAsyncRemote().sendText(socketMsg.getMsg());
+                }else{
+                    fromSession.getAsyncRemote().sendText("对方不在线或者您输入的频道号不对");
+                }
+            }else{
+                broadcast(socketMsg.getMsg());
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
     }
     /**
      * 发生错误时调用

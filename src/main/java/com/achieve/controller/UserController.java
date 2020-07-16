@@ -76,6 +76,7 @@ public class UserController {
             return "false";
         }else {
             request.getSession().setAttribute("currentUser",user2);
+            request.getSession().setAttribute("name",user2.getUserName());
             return "success";
         }
     }

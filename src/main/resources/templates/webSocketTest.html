@@ -22,15 +22,12 @@
 <hr />
 <br />
 消息：<input id="text" type="text" />
+频道号：<input id="toUser" type="text" />
 <button onclick="send()">发送消息</button>
 <div id="message"></div>
 </body>
 <script type="text/javascript">
 
-    var obj = window.document.location;
-    var BASE_PATH = obj.href.substring(0, obj.href.indexOf(obj.pathname));
-    var wsPath = "ws://"+BASE_PATH+"/websocket";
-    console.log(wsPath);
     var websocket = null;
     function conectWebSocket(){
         //判断当前浏览器是否支持WebSocket
@@ -71,7 +68,14 @@
     //发送消息
     function send() {
         var message = document.getElementById('text').value;
-        websocket.send(message);
+        var toUser = document.getElementById('toUser').value;
+        var socketMsg = {msg : message , toUser : toUser};
+        if(toUser == ''){
+            socketMsg.type = 0;
+        }else{
+            socketMsg.type = 1;
+        }
+        websocket.send(JSON.stringify(socketMsg));
     }
 </script>
 </html>

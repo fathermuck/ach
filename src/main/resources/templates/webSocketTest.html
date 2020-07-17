@@ -15,7 +15,7 @@
 </head>
 <body>
 <tr th:each="user : ${session.currentUser}">
-    欢迎：<td th:text="${user.getUserName()}"></td>
+    欢迎：<td id="userName" th:text="${user.getUserName()}"></td>
 </tr>
 <button onclick="conectWebSocket()">连接WebSocket</button>
 <button onclick="closeWebSocket()">断开连接</button>
@@ -26,7 +26,7 @@
 <button onclick="send()">发送消息</button>
 <div id="message"></div>
 </body>
-<script type="text/javascript">
+<script  th:inline="javascript">
 
     var websocket = null;
     function conectWebSocket(){
@@ -43,6 +43,7 @@
         //连接成功建立的回调方法
         websocket.onopen = function(event) {
             setMessageInnerHTML("Loc MSG: 成功建立连接");
+            sendAfterConect();
         }
         //接收到消息的回调方法
         websocket.onmessage = function(event) {
@@ -75,6 +76,15 @@
         }else{
             socketMsg.type = 1;
         }
+        websocket.send(JSON.stringify(socketMsg));
+    }
+
+    //连接WebSocket成功后
+    function sendAfterConect() {
+        var userName = [[${session.currentUser.userName}]];
+        var message = "用户"+userName+"已上线";
+        var socketMsg = {msg : message };
+        socketMsg.type = 0;
         websocket.send(JSON.stringify(socketMsg));
     }
 </script>

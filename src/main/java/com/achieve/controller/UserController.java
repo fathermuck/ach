@@ -68,15 +68,15 @@ public class UserController {
     @RequestMapping("/loginb")
     @ResponseBody
     public String login( @RequestBody User user, HttpServletRequest request){
+        HttpSession session = request.getSession();
         System.out.println("comin");
         User user2 = new User();
         user2 = userService.findUser(user);
-        System.out.println(serviceMap);//默认调用toString
         if(null==user2){
             return "false";
         }else {
             request.getSession().setAttribute("currentUser",user2);
-            request.getSession().setAttribute("name",user2.getUserName());
+            session.setAttribute("currentUser",user2);
             return "success";
         }
     }

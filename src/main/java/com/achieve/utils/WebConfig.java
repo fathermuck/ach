@@ -22,8 +22,8 @@ public class WebConfig implements WebMvcConfigurer {
 //                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
 //                .excludePathPatterns("/index.html","/","/user/login","/static/**","/webjars/**");
                 // /**  表示拦截所有路径下的所有请求
-              //  registry.addInterceptor(new LoginHandlerInterceptor())
-                //        .addPathPatterns("/**").excludePathPatterns("/js/**");
+                registry.addInterceptor(new LoginHandlerInterceptor())
+                        .addPathPatterns("/**").excludePathPatterns("/js/**");
             }
         };
     }

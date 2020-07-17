@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -33,29 +34,33 @@ public class MyWebSocket {
 
     private User user;
     //用来记录sessionId和该session进行绑定
-    private static Map<String,Session> map = new HashMap<String, Session>();
+    private static Map<Integer,Session> map = new HashMap<Integer, Session>();
     /**
      * 连接建立成功调用的方法
      */
     @OnOpen
-    public void onOpen(Session session, EndpointConfig config) {
-        this.session = session;
-        HttpSession httpSession= (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
-        System.out.println(httpSession.toString());
-   //     this.user = (User) httpSession.getAttribute("currentUser");
-        String userName = "路人甲";
-      //  userName = user.getUserName();
-        map.put(session.getId(),session); //加入map中
-        webSocketSet.add(this);     //加入set中
-        System.out.println("有新连接加入！当前在线人数为" + webSocketSet.size());
-        this.session.getAsyncRemote().sendText("恭喜"+userName+"成功连接上WebSocket(其频道号为："+session.getId()+"-->当前在线人数为："+webSocketSet.size());
-    }
+    public void onOpen(Session session, EndpointConfig config) throws IOException {
+        HttpSession httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
+        this.user = (User) httpSession.getAttribute("currentUser");
+        String userName = (user != null? user.getUserName(): "路人甲");
+        if(user != null && map.get(user.getUserId())== null){
+            this.session = session;
+            map.put(user.getUserId(),session); //加入map中
+            webSocketSet.add(this);     //加入set中
+            System.out.println("有新连接加入！当前在线人数为" + webSocketSet.size());
+            this.session.getAsyncRemote().sendText("恭喜"+userName+"成功连接上WebSocket(其频道号为："+session.getId()+"-->当前在线人数为："+webSocketSet.size());
+        }else{
+            session.close();
+        }
+
+     }
     /**
      * 连接关闭调用的方法
      */
     @OnClose
     public void onClose() {
         webSocketSet.remove(this);  //从set中删除
+        map.remove(user.getUserId());
         System.out.println("有一连接关闭！当前在线人数为" + webSocketSet.size());
     }
     /**
@@ -72,8 +77,8 @@ public class MyWebSocket {
             socketMsg = objectMapper.readValue(message,SocketMsg.class);
             if(socketMsg.getType() == 1){
                 socketMsg.setFromUser(session.getId());
-                Session fromSession = map.get(socketMsg.getFromUser());
-                Session toSession = map.get(socketMsg.getToUser());
+                Session fromSession = map.get(this.user.getUserId());
+                Session toSession = map.get(Integer.valueOf(socketMsg.getToUser()));
 
                 if(toSession != null){
                     fromSession.getAsyncRemote().sendText(socketMsg.getMsg());
